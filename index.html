@@ -1,0 +1,299 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+<meta charset="UTF-8">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Ellias Kitchen</title>
+
+<link rel="stylesheet" href="style.css">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+
+</head>
+
+<body>
+
+<header class="hero">
+
+    <nav>
+
+        <div class="logo">
+
+            <img src="logo.jpg" alt="Ellias Kitchen Logo">
+
+            <h1>Ellias Kitchen</h1>
+
+        </div>
+
+        <ul>
+
+            <li><a href="#products">Products</a></li>
+
+            <li><a href="#order">Order</a></li>
+
+            <li><a href="#track">Track</a></li>
+
+        </ul>
+
+    </nav>
+
+    <div class="hero-content">
+
+        <h2>Ellias Chicken Pastil</h2>
+
+        <p>Original • Spicy • Extra Spicy • Chili Garlic</p>
+
+        <a href="#order" class="btn">Order Now</a>
+
+    </div>
+
+</header>
+
+<section class="about">
+
+    <h2>About Ellias Kitchen</h2>
+
+    <p>
+       Homemade Favorites In a Jar, crafted with premium ingredients and rich flavors! Delivered nationwide via J&T Express. Our goal is to bring the best Favorites in a jar straight to your table for your family to enjoy.Catch a sneak peek of our customers' feedback on our Facebook Page. Please stay tuned for new products, and thank you for being with us as our kitchen grows. PUHON!
+    </p>
+
+</section>
+
+<!-- PRODUCTS -->
+
+<section id="products" class="products">
+
+    <h2>Our Products</h2>
+
+    <div class="product-grid">
+
+        <div class="card">
+
+            <img src="original.jpg" alt="Original Chicken Pastil">
+
+            <h3>Chicken Pastil Original</h3>
+
+            <p>200ML</p>
+
+            <h4>₱180</h4>
+
+            <button onclick="addToCart('Original Chicken Pastil', 180)">
+                Add to Cart
+            </button>
+
+        </div>
+
+        <div class="card">
+
+            <img src="spicy.jpg" alt="Spicy Chicken Pastil">
+
+            <h3>Chicken Pastil Spicy</h3>
+
+            <p>200ML</p>
+
+            <h4>₱180</h4>
+
+            <button onclick="addToCart('Spicy Chicken Pastil', 180)">
+                Add to Cart
+            </button>
+
+        </div>
+
+        <div class="card">
+
+            <img src="products.jpg" alt="Extra Spicy Chicken Pastil">
+
+            <h3>Chicken Pastil Extra Spicy</h3>
+
+            <p>200ML</p>
+
+            <h4>₱180</h4>
+
+            <button onclick="addToCart('Extra Spicy Chicken Pastil', 180)">
+                Add to Cart
+            </button>
+
+        </div>
+
+        <div class="card">
+
+            <img src="chili-garlic.jpg" alt="Chili Garlic">
+
+            <h3>Chili Garlic</h3>
+
+            <p>Premium Homemade Chili Garlic</p>
+
+            <h4>₱100</h4>
+
+            <button onclick="addToCart('Chili Garlic', 100)">
+                Add to Cart
+            </button>
+
+        </div>
+
+    </div>
+
+</section>
+
+<!-- CART -->
+
+<section class="cart-section">
+
+    <h2>Your Cart</h2>
+
+    <ul id="cart-items"></ul>
+
+</section>
+
+<!-- ORDER -->
+
+<section id="order" class="order">
+
+    <h2>Place Your Order</h2>
+
+    <form id="orderForm">
+
+        <input type="text" id="name" placeholder="Full Name" required>
+
+        <input type="email" id="email" placeholder="Email Address" required>
+
+        <input type="text" id="streetAddress" placeholder="House No / Street / Barangay" required>
+
+        <input type="text" id="cityProvince" placeholder="City / Province" required>
+
+        <input type="text" id="phone" placeholder="Phone Number" required>
+
+        <!-- AUTO DETECTED AREA -->
+
+        <input type="text" id="deliveryArea" placeholder="Delivery Area" readonly>
+
+        <!-- PAYMENT -->
+
+        <select id="payment" required>
+
+            <option value="">Select Payment Method</option>
+
+            <option>GCash</option>
+
+            <option>Cash on Delivery</option>
+
+        </select>
+
+        <!-- GCASH -->
+
+        <div id="gcashSection" style="display:none; margin-top:20px; text-align:center;">
+
+            <h3>Pay via GCash</h3>
+
+            <img src="gcash-qr.jpg" alt="GCash QR Code" width="250">
+
+            <p>Please send your payment before submitting your order.</p>
+
+        </div>
+
+        <!-- TOTALS -->
+
+        <div class="order-summary">
+
+            <h3>Subtotal: ₱<span id="subtotal">0</span></h3>
+
+            <h3>Delivery Fee: ₱<span id="deliveryFee">0</span></h3>
+
+            <h2>Grand Total: ₱<span id="total">0</span></h2>
+
+        </div>
+
+        <button type="submit">Submit Order</button>
+
+    </form>
+
+</section>
+
+<!-- TRACK -->
+
+<section id="track" class="tracking">
+
+    <h2>Track Your Delivery</h2>
+
+    <input type="text" id="trackingNumber" placeholder="Enter Tracking Number">
+
+    <button onclick="trackOrder()">Track Order</button>
+
+    <div id="trackingResult"></div>
+
+</section>
+
+<footer>
+
+    <p>© 2024 Ellias Kitchen. All Rights Reserved.</p>
+
+</footer>
+
+<!-- FIREBASE -->
+
+<script type="module">
+
+import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js";
+
+import {
+
+  getFirestore,
+
+  collection,
+
+  addDoc,
+
+  query,
+
+  where,
+
+  getDocs
+
+} from "https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js";
+
+const firebaseConfig = {
+
+  apiKey: "AIzaSyBC61O1sEnVM7j27pnnuPlqiGS6gttrGqw",
+
+  authDomain: "ellias-kitchen-8e3c0.firebaseapp.com",
+
+  projectId: "ellias-kitchen-8e3c0",
+
+  storageBucket: "ellias-kitchen-8e3c0.firebasestorage.app",
+
+  messagingSenderId: "307259232826",
+
+  appId: "1:307259232826:web:0717c9ffd828e068b65b03"
+
+};
+
+const app = initializeApp(firebaseConfig);
+
+const db = getFirestore(app);
+
+window.db = db;
+window.collection = collection;
+window.addDoc = addDoc;
+window.query = query;
+window.where = where;
+window.getDocs = getDocs;
+
+</script>
+
+<!-- EMAILJS -->
+
+<script type="text/javascript"
+src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js">
+</script>
+
+<script src="main.js"></script>
+
+</body>
+
+</html>

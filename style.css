@@ -1,0 +1,322 @@
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
+
+body{
+    font-family:'Poppins', sans-serif;
+    background:#0f0f0f;
+    color:white;
+    line-height:1.6;
+}
+
+/* HERO */
+
+.hero{
+    background:
+    linear-gradient(rgba(0,0,0,.7), rgba(0,0,0,.7)),
+    url('products.jpg') center/cover;
+
+    min-height:100vh;
+}
+
+/* NAVBAR */
+
+nav{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    padding:20px 60px;
+    flex-wrap:wrap;
+}
+
+.logo{
+    display:flex;
+    align-items:center;
+    gap:15px;
+}
+
+.logo img{
+    width:60px;
+    border-radius:50%;
+}
+
+nav ul{
+    display:flex;
+    gap:20px;
+    list-style:none;
+    flex-wrap:wrap;
+}
+
+nav a{
+    color:white;
+    text-decoration:none;
+    transition:.3s;
+}
+
+nav a:hover{
+    color:#ff6600;
+}
+
+/* HERO CONTENT */
+
+.hero-content{
+    text-align:center;
+    margin-top:180px;
+    padding:20px;
+}
+
+.hero-content h2{
+    font-size:4rem;
+    line-height:1.2;
+}
+
+.hero-content p{
+    margin-top:15px;
+    font-size:1.2rem;
+}
+
+/* BUTTON */
+
+.btn{
+    display:inline-block;
+    margin-top:20px;
+    background:#ff6600;
+    color:white;
+    padding:14px 30px;
+    border-radius:8px;
+    text-decoration:none;
+    transition:.3s;
+}
+
+.btn:hover{
+    opacity:.9;
+}
+
+/* SECTIONS */
+
+section{
+    padding:80px 10%;
+}
+
+/* TITLES */
+
+.products h2,
+.about h2,
+.order h2,
+.socials h2,
+.tracking h2{
+    margin-bottom:30px;
+    text-align:center;
+}
+
+/* PRODUCT GRID */
+
+.product-grid{
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(280px,1fr));
+    gap:30px;
+}
+
+/* PRODUCT CARD */
+
+.card{
+    background:#1c1c1c;
+    padding:20px;
+    border-radius:15px;
+    text-align:center;
+    transition:.3s;
+}
+
+.card:hover{
+    transform:translateY(-5px);
+}
+
+.card img{
+    width:100%;
+    height:320px;
+    object-fit:cover;
+    border-radius:12px;
+}
+
+.card h3{
+    margin-top:15px;
+}
+
+.card p{
+    margin-top:10px;
+    color:#ccc;
+}
+
+.card h4{
+    margin-top:10px;
+    color:#ff6600;
+    font-size:1.4rem;
+}
+
+/* BUTTONS */
+
+.card button,
+.order button,
+.tracking button{
+    background:#ff6600;
+    color:white;
+    border:none;
+    padding:12px 18px;
+    border-radius:8px;
+    cursor:pointer;
+    margin-top:15px;
+    transition:.3s;
+}
+
+.card button:hover,
+.order button:hover,
+.tracking button:hover{
+    opacity:.9;
+}
+
+/* CART */
+
+.cart-section{
+    background:#161616;
+}
+
+#cart-items{
+    margin-bottom:20px;
+    padding-left:20px;
+}
+
+/* FORM */
+
+form{
+    max-width:500px;
+    margin:auto;
+    display:flex;
+    flex-direction:column;
+    gap:15px;
+}
+
+input,
+select{
+    padding:14px;
+    border:none;
+    border-radius:8px;
+    width:100%;
+}
+
+.order-summary{
+    background:#1a1a1a;
+    padding:20px;
+    border-radius:12px;
+}
+
+/* TRACKING */
+
+#trackingResult{
+    margin-top:20px;
+}
+
+/* SOCIALS */
+
+.socials{
+    text-align:center;
+}
+
+.socials a{
+    display:block;
+    color:#ff6600;
+    margin:10px 0;
+    text-decoration:none;
+}
+
+/* TABLE */
+
+table{
+    width:100%;
+    border-collapse:collapse;
+}
+
+table th,
+table td{
+    border:1px solid #333;
+    padding:15px;
+    text-align:center;
+}
+
+/* FOOTER */
+
+footer{
+    text-align:center;
+    padding:30px;
+    background:#000;
+}
+
+.note{
+    margin-top:20px;
+    text-align:center;
+    color:#aaa;
+}
+
+.developer-credit{
+    margin-top:10px;
+    font-size:14px;
+    opacity:.8;
+}
+
+/* MOBILE RESPONSIVE */
+
+@media (max-width:768px){
+
+    nav{
+        flex-direction:column;
+        gap:20px;
+        padding:20px;
+    }
+
+    nav ul{
+        justify-content:center;
+    }
+
+    .hero-content{
+        margin-top:120px;
+    }
+
+    .hero-content h2{
+        font-size:2.5rem;
+    }
+
+    .hero-content p{
+        font-size:1rem;
+    }
+
+    section{
+        padding:60px 20px;
+    }
+
+    .product-grid{
+        grid-template-columns:1fr;
+    }
+
+    .card img{
+        height:260px;
+    }
+
+    form{
+        width:100%;
+    }
+
+    input,
+    select{
+        font-size:16px;
+    }
+
+    .order-summary h2{
+        font-size:1.5rem;
+    }
+
+    footer{
+        font-size:14px;
+    }
+
+}
